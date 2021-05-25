@@ -6,12 +6,19 @@
 
     <groupId>dev.lillian.messenger</groupId>
     <artifactId>parent</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0</version>
     <modules>
         <module>api</module>
         <module>local</module>
     </modules>
     <packaging>pom</packaging>
+
+    <distributionManagement>
+        <repository>
+            <id>lillian-maven</id>
+            <url>https://maven.lillian.dev/releases</url>
+        </repository>
+    </distributionManagement>
 
     <properties>
         <maven.compiler.source>11</maven.compiler.source>
