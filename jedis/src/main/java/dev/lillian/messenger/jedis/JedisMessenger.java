@@ -8,6 +8,7 @@ import redis.clients.jedis.JedisPubSub;
 import redis.clients.jedis.util.Pool;
 
 import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.ForkJoinPool;
 import java.util.concurrent.TimeUnit;
 
 import static java.util.Objects.requireNonNull;
@@ -26,7 +27,7 @@ public final class JedisMessenger extends AbstractMessenger {
 
         CountDownLatch latch = new CountDownLatch(1);
         try (Jedis jedis = pool.getResource()) {
-            jedis.subscribe(new JedisPubSub() {
+            ForkJoinPool.commonPool().execute(() -> jedis.subscribe(new JedisPubSub() {
                 @Override
                 public void onMessage(String channel, String message) {
                     receive(message);
@@ -36,7 +37,7 @@ public final class JedisMessenger extends AbstractMessenger {
                 public void onSubscribe(String channel, int subscribedChannels) {
                     latch.countDown();
                 }
-            }, channel);
+            }, channel));
         }
 
         if (!latch.await(1, TimeUnit.SECONDS)) {
