@@ -49,7 +49,7 @@ public abstract class AbstractMessenger {
 
             subscribe(type, (msg) -> {
                 try {
-                    method.invoke(msg);
+                    method.invoke(parent, msg);
                 } catch (IllegalAccessException | InvocationTargetException e) {
                     e.printStackTrace();
                 }
