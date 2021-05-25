@@ -10,6 +10,7 @@
     <modules>
         <module>api</module>
         <module>local</module>
+        <module>jedis</module>
     </modules>
     <packaging>pom</packaging>
 
