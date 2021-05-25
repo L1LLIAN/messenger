@@ -21,7 +21,7 @@ public final class GSONSerializationService implements ISerializationService {
 
     @Override
     public @NotNull Object deserialize(@NotNull String serializedObject) {
-        String[] split = serializedObject.split("@");
+        String[] split = serializedObject.split("@", 2);
         if (split.length != 2) {
             throw new SerializationException("serializedObject data is not valid!");
         }
