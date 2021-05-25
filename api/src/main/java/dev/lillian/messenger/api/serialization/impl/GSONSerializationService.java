@@ -6,11 +6,15 @@ import dev.lillian.messenger.api.serialization.ISerializationService;
 import dev.lillian.messenger.api.serialization.SerializationException;
 import org.jetbrains.annotations.NotNull;
 
+import static java.util.Objects.requireNonNull;
+
 public final class GSONSerializationService implements ISerializationService {
     private final Gson gson = new Gson();
 
     @Override
     public @NotNull String serialize(@NotNull Object object) {
+        requireNonNull(object, "object");
+
         String serialized = "";
         serialized += object.getClass().getName();
         serialized += "@";
@@ -21,6 +25,8 @@ public final class GSONSerializationService implements ISerializationService {
 
     @Override
     public @NotNull Object deserialize(@NotNull String serializedObject) {
+        requireNonNull(serializedObject, "serializedObject");
+
         String[] split = serializedObject.split("@", 2);
         if (split.length != 2) {
             throw new SerializationException("serializedObject data is not valid!");
