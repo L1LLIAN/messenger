@@ -16,12 +16,12 @@
 
     <distributionManagement>
         <repository>
-            <id>lillian-maven</id>
-            <url>https://maven.lillian.dev/releases</url>
+            <id>lillian-releases</id>
+            <url>https://repo.lillian.dev/releases</url>
         </repository>
         <snapshotRepository>
-            <id>lillian-maven</id>
-            <url>https://maven.lillian.dev/snapshots</url>
+            <id>lillian-snapshots</id>
+            <url>https://repo.lillian.dev/snapshots</url>
         </snapshotRepository>
     </distributionManagement>
 
